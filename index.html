@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,119 +28,135 @@
     .dark-mode {
       background-color: var(--bg-dark);
       color: var(--text-dark);
-    }header {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 600px;
-  align-items: center;
-}
+    }
 
-h1 {
-  margin: 0.5rem 0;
-  text-align: center;
-  flex-grow: 1;
-}
+    header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 600px;
+      align-items: center;
+      position: relative;
+    }
 
-.theme-toggle, .help-button, #sound-toggle {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  color: inherit;
-}
+    h1 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      margin: 0.5rem 0;
+    }
 
-#targetNumber {
-  font-size: 1.5rem;
-  margin: 1rem 0;
-}
+    .theme-toggle, .help-button, #sound-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      color: inherit;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 5px;
-  width: 100%;
-  max-width: 600px;
-}
+    #targetNumber {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+    }
 
-.cell {
-  aspect-ratio: 1;
-  background-color: var(--cell-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--border-radius);
-  font-size: 1.25rem;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.3s;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+      width: 100%;
+      max-width: 600px;
+    }
 
-.dark-mode .cell {
-  background-color: var(--cell-bg-dark);
-}
+    .cell {
+      aspect-ratio: 1;
+      background-color: var(--cell-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--border-radius);
+      font-size: 1.25rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
 
-.cell.selected {
-  background-color: #007bff;
-  color: white;
-}
+    .dark-mode .cell {
+      background-color: var(--cell-bg-dark);
+    }
 
-.cell.correct {
-  background-color: #28a745;
-  color: white;
-}
+    .cell.selected {
+      background-color: #007bff;
+      color: white;
+    }
 
-.cell.wrong {
-  background-color: #dc3545;
-  color: white;
-}
+    .cell.correct {
+      background-color: #28a745;
+      color: white;
+    }
 
-#history {
-  margin-top: 1rem;
-  max-width: 600px;
-  text-align: center;
-}
+    .cell.wrong {
+      background-color: #dc3545;
+      color: white;
+    }
 
-.modal {
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: white;
-  color: black;
-  padding: 1.25rem;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  width: 300px;
-  max-width: 90%;
-  z-index: 10;
-}
+    #history {
+      margin-top: 1rem;
+      max-width: 600px;
+      text-align: center;
+    }
 
-.dark-mode .modal {
-  background-color: #333;
-  color: white;
-}
+    .modal {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: white;
+      color: black;
+      padding: 1.25rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      width: 300px;
+      max-width: 90%;
+      z-index: 10;
+    }
 
-.modal button {
-  float: right;
-  background: none;
-  border: none;
-  font-size: 1.25rem;
-  cursor: pointer;
-  color: inherit;
-}
+    .dark-mode .modal {
+      background-color: #333;
+      color: white;
+    }
 
-#timer {
-  font-weight: bold;
-  margin-top: 0.5rem;
-}
+    .modal button {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: inherit;
+    }
 
-@media (max-width: 600px) {
-  .grid { gap: 3px; }
-  .cell { font-size: 1rem; }
-}
+    #timer {
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
 
+    @media (max-width: 600px) {
+      .grid { gap: 3px; }
+      .cell { font-size: 1rem; }
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .shake {
+      animation: shake 0.5s;
+    }
   </style>
 </head>
 <body>
@@ -150,10 +167,14 @@ h1 {
     </div>
     <h1>Tripletas</h1>
     <button class="help-button" title="Reglas">☰</button>
-  </header>  <div id="targetNumber"></div>
+  </header>
+
+  <div id="targetNumber"></div>
   <div id="timer">Tiempo: 0.0s</div>
   <div class="grid" id="grid"></div>
-  <div id="history"></div>  <div id="rulesModal" class="modal" style="display: none;">
+  <div id="history"></div>
+
+  <div id="rulesModal" class="modal" style="display: none;">
     <button onclick="toggleRules()">❌</button>
     <h2>Reglas del juego</h2>
     <ul>
@@ -162,7 +183,10 @@ h1 {
       <li>Luego suma o resta el tercero.</li>
       <li>Si el resultado da el número objetivo, ¡aciertas!</li>
     </ul>
-  </div><audio id="correctSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_c54189561c.mp3"></audio> <audio id="wrongSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_51be91d04f.mp3"></audio>
+  </div>
+
+  <audio id="correctSound" src="success.mp3"></audio>
+  <audio id="wrongSound" src="fail.mp3"></audio>
 
   <script>
     const gridElement = document.getElementById('grid');
@@ -176,8 +200,9 @@ h1 {
     let selected = [];
     let target = null;
     let startTime = 0;
-    let recentHistory = [];
     let paused = false;
+    let pauseStart = 0;
+    let recentHistory = [];
 
     const getIndex = (row, col) => row * 10 + col;
 
@@ -266,6 +291,8 @@ h1 {
         setTimeout(resetGame, 1200);
       } else {
         if (soundEnabled) wrongSound.play();
+        document.body.classList.add('shake');
+        setTimeout(() => document.body.classList.remove('shake'), 500);
         [i1, i2, i3].forEach(i => cells[i].className = 'cell wrong');
         setTimeout(() => {
           [i1, i2, i3].forEach(i => {
@@ -297,13 +324,20 @@ h1 {
       const modal = document.getElementById('rulesModal');
       const isVisible = modal.style.display === 'block';
       modal.style.display = isVisible ? 'none' : 'block';
-      paused = !paused;
+
+      if (!isVisible) {
+        paused = true;
+        pauseStart = performance.now();
+      } else {
+        const pauseDuration = performance.now() - pauseStart;
+        startTime += pauseDuration;
+        paused = false;
+      }
     }
 
     document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
     document.querySelector('.help-button').addEventListener('click', toggleRules);
 
-    // Sonido toggle con almacenamiento
     let soundEnabled = true;
     const soundToggle = document.getElementById('sound-toggle');
     function updateSoundButton() {
@@ -317,8 +351,8 @@ h1 {
     });
 
     resetGame();
+    toggleRules(); // Mostrar reglas al cargar
 
-    // Restaurar configuración
     if (localStorage.getItem('darkMode') === 'on') {
       document.body.classList.add('dark-mode');
     }
@@ -338,5 +372,6 @@ h1 {
       const diff = ((now - startTime) / 1000).toFixed(1);
       timerElement.textContent = `Tiempo: ${diff}s`;
     }, 100);
-  </script></body>
+  </script>
+</body>
 </html>
