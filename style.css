@@ -1,0 +1,175 @@
+:root {
+    --bg-light: #ffffff;
+    --bg-dark: #121212;
+    --text-light: #000000;
+    --text-dark: #ffffff;
+    --cell-bg: #f0f0f0;
+    --cell-bg-dark: #1e1e1e;
+    --border-radius: 10px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    align-items: center;
+    position: relative;
+}
+
+h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.theme-toggle,
+.help-button,
+#sound-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: inherit;
+}
+
+#targetNumber {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.cell {
+    aspect-ratio: 1;
+    background-color: var(--cell-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    font-size: 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+}
+
+.dark-mode .cell {
+    background-color: var(--cell-bg-dark);
+}
+
+.cell.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+.cell.correct {
+    background-color: #28a745;
+    color: white;
+}
+
+.cell.wrong {
+    background-color: #dc3545;
+    color: white;
+}
+
+#history {
+    margin-top: 1rem;
+    max-width: 600px;
+    text-align: center;
+}
+
+.modal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    color: black;
+    padding: 1.25rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    max-width: 90%;
+    z-index: 10;
+}
+
+.dark-mode .modal {
+    background-color: #333;
+    color: white;
+}
+
+.modal button {
+    float: right;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: inherit;
+}
+
+#timer {
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .grid {
+        gap: 3px;
+    }
+
+    .cell {
+        font-size: 1rem;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
