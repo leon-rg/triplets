@@ -16,7 +16,7 @@
  * 10. Historial con formato mejorado.
  */
 
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   /* ── Constantes ── */
@@ -365,4 +365,4 @@
   resetGame();
   openRules();
 
-})();
+});
