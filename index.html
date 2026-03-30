@@ -3,43 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Juego de lógica donde debes seleccionar tres números para alcanzar un objetivo. Multiplica y suma o resta para acertar." />
+  <meta name="keywords" content="juego tripletas, lógica matemática, juego de números, puzzle educativo, juego web gratuito" />
   <title>Tripletas</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
-<meta name="description" content="Juego de lógica donde debes seleccionar tres números para alcanzar un objetivo. Multiplica y suma o resta para acertar." />
-<meta name="keywords" content="juego tripletas, lógica matemática, juego de números, puzzle educativo, juego web gratuito">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
   <header>
-    <div style="display: flex; gap: 0.5rem;">
-      <button class="theme-toggle" title="Modo Claro/Oscuro">🌓</button>
-      <button id="sound-toggle" title="Sonido activado">🔊</button>
+    <div class="header-controls left">
+      <button class="icon-btn" id="theme-toggle" title="Modo Claro/Oscuro">🌓</button>
+      <button class="icon-btn" id="sound-toggle" title="Sonido activado">🔊</button>
     </div>
-    <h1>Tripletas</h1>
-    <button class="help-button" title="Reglas">☰</button>
+    <h1>TRIPLETAS</h1>
+    <div class="header-controls right">
+      <button class="icon-btn" id="help-button" title="Reglas">?</button>
+    </div>
   </header>
 
   <div id="targetNumber"></div>
-  <div id="timer">Tiempo: 0.0s</div>
-  <div class="grid" id="grid"></div>
-  <div id="history"></div>
-
-  <div id="rulesModal" class="modal" style="display: none;">
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-      <h2 style="margin: 0;">Reglas del juego</h2>
-      <button onclick="toggleRules()" style="font-size: 1.2rem;">❌</button>
+  <div id="hud">
+    <div class="hud-block">
+      <span class="hud-label">Tiempo</span>
+      <span class="hud-value" id="timer">0.0s</span>
     </div>
-    <ul>
-      <li>Selecciona tres números en línea (horizontal, vertical o diagonal).</li>
-      <li>Multiplica los dos que estén juntos.</li>
-      <li>Luego suma o resta el tercero.</li>
-      <li>Si el resultado da el número objetivo, ¡aciertas!</li>
-    </ul>
+    <div class="hud-block">
+      <span class="hud-label">Aciertos</span>
+      <span class="hud-value" id="score">0</span>
+    </div>
+    <div class="hud-block">
+      <span class="hud-label">Mejor</span>
+      <span class="hud-value" id="best-time">—</span>
+    </div>
   </div>
 
-  <audio id="correctSound" src="success.mp3"></audio>
-  <audio id="wrongSound" src="fail.mp3"></audio>
+  <div id="feedback-msg" aria-live="polite"></div>
+
+  <div class="grid" id="grid"></div>
+
+  <div id="history-wrapper">
+    <div class="history-label">HISTORIAL</div>
+    <div id="history"></div>
+  </div>
+
+  <!-- Modal de reglas -->
+  <div id="rulesModal" class="modal" style="display:none;" role="dialog" aria-modal="true" aria-label="Reglas del juego">
+    <div class="modal-header">
+      <h2>Reglas del juego</h2>
+      <button class="icon-btn" id="close-modal" title="Cerrar">✕</button>
+    </div>
+    <ul>
+      <li>Selecciona <strong>tres números en línea</strong> (horizontal, vertical o diagonal).</li>
+      <li>Toma los <strong>dos adyacentes</strong> y multiplícalos.</li>
+      <li>Luego <strong>suma o resta</strong> el tercero.</li>
+      <li>Si el resultado coincide con el número objetivo, ¡aciertas!</li>
+    </ul>
+    <p class="modal-example">Ej: <strong>3 · 4 ± 2</strong> → 14 o 10</p>
+  </div>
+  <div id="modal-overlay" style="display:none;"></div>
+
+  <audio id="correctSound" src="success.mp3" preload="auto"></audio>
+  <audio id="wrongSound" src="fail.mp3" preload="auto"></audio>
 
   <script src="scripts.js"></script>
 </body>
